@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UTM Zone Division Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+
+    <style>
+        #map { height: 600px; }
+        #controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            z-index: 1000;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .zone-label {
+            color: red;
+            font-size: 8px;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px white;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-measure/2.3.0/leaflet-measure.js"></script>
+    
+</head>
+<body>
+    <div id="map"></div>
+    <div id="controls">
+        <label>Longitude Subdivisions: 
+            <input type="number" id="lonSubdivisions" min="1" max="10" value="2" />
+        </label>
+        <label>Latitude Subdivisions: 
+            <input type="number" id="latSubdivisions" min="1" max="10" value="2" />
+        </label>
+        <button onclick="updateGrid()">Update Grid</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([0, 0], 3);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        let zoneLines = [];
+
+        function createUTMGrid(lonSubdivisions, latSubdivisions) {
+            // Clear existing lines
+            zoneLines.forEach(line => map.removeLayer(line));
+            zoneLines = [];
+
+            // Longitude main zones (vertical) - from 0 to 60
+            for (let lon = -180; lon <= 180; lon += 6) {
+                const line = L.polyline([
+                    [-90, lon], 
+                    [90, lon]
+                ], {color: 'blue', weight: 1}).addTo(map);
+                
+                // Add zone number labels
+                const zoneNumber = Math.floor((lon + 180) / 6) + 1;
+                const label = L.tooltip({
+                    permanent: true,
+                    direction: 'center',
+                    className: 'zone-label'
+                })
+                .setContent(`Lon ${zoneNumber}`)
+                .setLatLng([0, lon])
+                .addTo(map);
+
+                zoneLines.push(line, label);
+            }
+
+            // Longitude subdivisions
+            for (let lon = -180; lon <= 180; lon += 6 / (lonSubdivisions + 1)) {
+                if (lon % 6 === 0) continue; // Skip main zone lines
+                const line = L.polyline([
+                    [-90, lon], 
+                    [90, lon]
+                ], {color: 'blue', weight: 0.5, dashArray: '2,4'}).addTo(map);
+                zoneLines.push(line);
+            }
+
+            const equatorLine = L.polyline([
+                [0, -180], 
+                [0, 180]
+            ], {color: 'red', weight: 1.5}).addTo(map);
+            zoneLines.push(equatorLine);
+
+            // Add prime meridian line
+            const primeMeridianLine = L.polyline([
+                [-90, 0], 
+                [90, 0]
+            ], {color: 'red', weight: 1.5}).addTo(map);
+            zoneLines.push(primeMeridianLine);
+
+            
+        }
+
+        function updateGrid() {
+            const lonSubdivisions = parseInt(document.getElementById('lonSubdivisions').value);
+            const latSubdivisions = parseInt(document.getElementById('latSubdivisions').value);
+            createUTMGrid(lonSubdivisions, latSubdivisions);
+        }
+
+        // Initial grid
+        createUTMGrid(2, 2);
+    </script>
+</body>
+</html>
