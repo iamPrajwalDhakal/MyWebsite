@@ -1,229 +1,312 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IAMPRAJWALDHAKAL</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <title>Your Name - Civil Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- Reset & Base Styles --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            background-color: #f0f7ff; /* Light vibrant blue background */
-            color: #333333; /* Darker text for contrast */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom Accent classes if needed, though Tailwind's blue-600 and blue-700 are good */
+        .text-accent { color: #2563EB; } /* blue-600 */
+        .bg-accent { background-color: #2563EB; }
+        .border-accent { border-color: #2563EB; }
+        .hover-bg-accent-darker:hover { background-color: #1D4ED8; } /* blue-700 */
+        .hover-text-accent-darker:hover { color: #1D4ED8; }
+        .shadow-accent { box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2); }
+        .shadow-accent-lg { box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25); }
+
+        /* Underline for section titles */
+        .section-title-underline {
+            position: relative;
+            padding-bottom: 0.5rem; /* Space for underline */
+        }
+        .section-title-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5rem; /* 80px */
+            height: 0.25rem; /* 4px */
+            background-color: #2563EB; /* blue-600 */
+            border-radius: 0.125rem; /* 2px */
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #0066cc; /* Darker blue on hover */
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        sup {
-            vertical-align: super;
-            font-size: 0.6em;
-            line-height: 0;
-            margin-left: 2px;
-        }
-
-        /* --- Header --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 3rem;
-            font-size: 0.9rem;
-            color: #444444;
-        }
-
-        header .main-nav ul {
-            display: flex;
-            gap: 2rem;
-        }
-
-        header .brand-name {
-            font-weight: 500;
-            color: #333333;
-        }
-
-        header .menu-toggle {
-            color: #333333;
-        }
-
-        /* --- Main Content (Hero Section) --- */
-        main {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-
-        .hero {
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 500;
-            color: #0066cc; /* Vibrant blue for heading */
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero .clients {
-            font-size: 1.8rem;
-            color: #555555;
-            font-weight: 400;
-            line-height: 1.5;
-            margin-bottom: 3rem;
-        }
-
-        .hero .status {
-            font-size: 0.9rem;
-            color: #444444;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6em;
-        }
-
-        .hero .status-indicator {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: #0066cc;
-        }
-
-        /* --- Footer --- */
-        footer {
-            padding: 2rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            font-size: 0.9rem;
-            color: #666666;
-        }
-
-        footer .contact-info p {
-            margin-bottom: 0.3rem;
-        }
-
-        footer .contact-info strong {
-            font-weight: 500;
-            color: #444444;
-        }
-
-        footer .contact-info a {
-            color: #0066cc;
-        }
-
-        footer .contact-info a:hover {
-            color: #004d99;
-        }
-
-        /* --- Simple Responsiveness --- */
-        @media (max-width: 768px) {
-            header {
-                padding: 1.5rem 1.5rem;
-            }
-            footer {
-                padding: 1.5rem 1.5rem;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .hero .clients {
-                font-size: 1.4rem;
-            }
-            header .main-nav ul {
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 1rem 1rem;
-                font-size: 0.8rem;
-            }
-            footer {
-                padding: 1rem 1rem;
-                font-size: 0.8rem;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            .hero .clients {
-                font-size: 1.2rem;
-            }
-            .hero .status {
-                font-size: 0.8rem;
-            }
-            header .main-nav ul {
-                gap: 1rem;
-            }
+        /* Timeline styling */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.60rem; /* Adjust to center the dot on the line */
+            top: 0.5rem; /* Align with text or slightly above */
+            width: 1rem; /* Dot size */
+            height: 1rem; /* Dot size */
+            background-color: #2563EB; /* blue-600 */
+            border-radius: 50%;
+            border: 3px solid #E5E7EB; /* bg-gray-200 for the line */
+            z-index: 1;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 antialiased">
 
-    <header>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Works <sup>8</sup></a></li>
-                <li><a href="#">Almost <sup>15</sup></a></li>
+    <!-- 
+     
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <a href="#hero" class="text-2xl font-bold text-blue-600">Your Name, P.E.</a>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#hero" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">Home</a></li>
+                <li><a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">About</a></li>
+                <li><a href="#resume" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">Resume</a></li>
+                <li><a href="#projects" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">Projects</a></li>
+                <li><a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">Contact</a></li>
             </ul>
+      
+            <div class="md:hidden">
+                <button id="mobileMenuButton" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
         </nav>
-    
+       
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <a href="#hero" class="block py-3 px-4 text-sm text-gray-600 hover:bg-gray-100 hover:text-blue-600">Home</a>
+            <a href="#about" class="block py-3 px-4 text-sm text-gray-600 hover:bg-gray-100 hover:text-blue-600">About</a>
+            <a href="#resume" class="block py-3 px-4 text-sm text-gray-600 hover:bg-gray-100 hover:text-blue-600">Resume</a>
+            <a href="#projects" class="block py-3 px-4 text-sm text-gray-600 hover:bg-gray-100 hover:text-blue-600">Projects</a>
+            <a href="#contact" class="block py-3 px-4 text-sm text-gray-600 hover:bg-gray-100 hover:text-blue-600">Contact</a>
+        </div>
     </header>
+        -->
 
     <main>
-        <section class="hero">
-            <h1>I AM PRAJWAL DHAKAL</h1>
-            <p class="clients">
-                Let me finish Engineering.
-            </p>
-            <p class="status">
-                <span class="status-indicator"></span> Curious
-            </p>
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center pt-24 lg:pt-16 bg-gradient-to-br from-gray-50 to-gray-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center justify-between gap-10 text-center md:text-left">
+                <div class="md:w-1/2 lg:w-3/5 space-y-6">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
+                        Hi, I'm <span class="text-blue-600">Prajwal Dhakal</span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl text-gray-600">
+                        Curious | Lifelong Learner 
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                        <a href="#projects" class="inline-block bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                            My Works
+                        </a>
+                        <div class="flex items-center space-x-4">
+                            <a href="mailto:your.email@example.com" class="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                                <span class="font-medium">prajwaldhakal84@gmail.com</span>
+                            </a>
+                            <a href="tel:+1234567890" class="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                </svg>
+                                <span class="font-medium">+977 9807913909</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 lg:w-2/5 flex justify-center md:justify-end mt-8 md:mt-0">
+                    <img src="profilepic.png" alt="Your Name - Civil Engineer" id="profilePic" class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-accent-lg">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-gray-900 section-title-underline">About Me</h2>
+                <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                    Hello, I am Prajwal Dhakal. A civil engineer by profession and curious by nature. When not in my engineering shoes, I am curious and avid learner for LLM's and Stable Diffusion. Love to learn anything new I find interesting.
+                </p>
+            </div>
+        </section>
+
+        <!-- Resume / Experience Section -->
+        <section id="resume" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16 text-gray-900 section-title-underline">My Journey</h2>
+
+                <div class="max-w-3xl mx-auto">
+                    <!---
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-8 text-center md:text-left">Work Experience</h3>
+                    <div class="relative pl-8 border-l-2 border-gray-200">
+                        
+                        <div class="mb-10 ml-2 timeline-item">
+                            <p class="text-sm text-gray-500">Jan 2020 - Present</p>
+                            <h4 class="text-xl font-semibold text-gray-800 mt-1">Senior Civil Engineer</h4>
+                            <p class="text-md text-gray-600 font-medium">Innovatech Engineering Solutions, [City, State]</p>
+                            <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1 text-sm">
+                                <li>Led design teams for major infrastructure projects, including [specific project type].</li>
+                                <li>Managed project budgets, timelines, and client communications.</li>
+                                <li>Implemented new design software, improving efficiency by X%.</li>
+                                <li>Mentored junior engineers and reviewed technical reports.</li>
+                            </ul>
+                        </div>
+                        <!--
+                        <div class="mb-10 ml-2 timeline-item">
+                            <p class="text-sm text-gray-500">Jun 2017 - Dec 2019</p>
+                            <h4 class="text-xl font-semibold text-gray-800 mt-1">Civil Engineer</h4>
+                            <p class="text-md text-gray-600 font-medium">BuildWell Consultants, [City, State]</p>
+                            <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1 text-sm">
+                                <li>Contributed to structural designs for commercial and residential buildings.</li>
+                                <li>Conducted site inspections and ensured compliance with specifications.</li>
+                                <li>Prepared detailed engineering drawings using AutoCAD and Revit.</li>
+                            </ul>
+                        </div>
+                         <!--
+                    </div>
+
+                
+                    <!-- Education -->
+                    <h3 class="text-2xl font-semibold text-blue-600 mt-16 mb-8 text-center md:text-left">Education</h3>
+                    <div class="relative pl-8 border-l-2 border-gray-200">
+                        <!-- Timeline Item 1 -->
+                        <div class="mb-10 ml-2 timeline-item">
+                            <p class="text-sm text-gray-500">Enrolled in Feb 2021</p>
+                            <h4 class="text-xl font-semibold text-gray-800 mt-1">Bachelors in Civil Engineering (Specialization in Hydropower)</h4>
+                            <p class="text-md text-gray-600 font-medium">Kathmandu University, Dhulikhel, Kavre</p>
+                        </div>
+                        <!-- Timeline Item 2 -->
+                        <div class="mb-10 ml-2 timeline-item">
+                            <p class="text-sm text-gray-500">Graduated April 2021</p>
+                            <h4 class="text-xl font-semibold text-gray-800 mt-1">College Education (+2 Level)</h4>
+                            <p class="text-md text-gray-600 font-medium">Damak Multiple Campus. Damak, Jhapa</p>
+                            <p class="text-gray-600 mt-1 text-sm">Science Stream</p>
+                        </div>
+
+                        <div class="mb-10 ml-2 timeline-item">
+                            <p class="text-sm text-gray-500">Graduated April 2019</p>
+                            <h4 class="text-xl font-semibold text-gray-800 mt-1">School Level Education</h4>
+                            <p class="text-md text-gray-600 font-medium">Sarvodaya English Boarding Secondary School. Damak-5, Jhapa</p>
+                            <p class="text-gray-600 mt-1 text-sm"></p>
+                        </div>
+                        <!-- Add more education items as needed -->
+                    </div>
+
+                    <!-- Optional: Certifications / Licenses -->
+                    <!--
+                    <h3 class="text-2xl font-semibold text-blue-600 mt-16 mb-8 text-center md:text-left">Licenses & Certifications</h3>
+                    <div class="relative pl-8 border-l-2 border-gray-200">
+                        <div class="mb-10 ml-2 timeline-item">
+                            <p class="text-sm text-gray-500">Issued [Date]</p>
+                            <h4 class="text-xl font-semibold text-gray-800 mt-1">Professional Engineer (P.E.)</h4>
+                            <p class="text-md text-gray-600 font-medium">[State/Licensing Body], License #: [Your License Number]</p>
+                        </div>
+                        <div class="mb-10 ml-2 timeline-item">
+                            <p class="text-sm text-gray-500">Issued [Date]</p>
+                            <h4 class="text-xl font-semibold text-gray-800 mt-1">[Other Certification, e.g., LEED AP]</h4>
+                            <p class="text-md text-gray-600 font-medium">[Certifying Body]</p>
+                        </div>
+                    </div>
+                    -->
+
+                    <div class="text-center mt-12">
+                        <a href="YOUR_CV_LINK.pdf" target="_blank" class="inline-block bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                            Download Full CV (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section 
+        <section id="projects" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900 section-title-underline">My Works</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-accent transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
+                        <img src="image1.jpg" alt="Bridge Design Project" class="rounded-lg mb-5 h-48 w-full object-cover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600">Structural Design of [Bridge Name]</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Led the structural analysis and design for a [type] bridge, focusing on material efficiency and seismic resilience. Utilized [Software Used, e.g., STAAD.Pro, SAP2000].</p>
+                        <div class="mt-auto pt-4 border-t border-gray-200">
+                            <a href="#" target="_blank" class="text-sm text-blue-600 hover-text-accent-darker font-medium hover:underline mr-4">View Details</a>
+                        </div>
+                    </div>
+                    <!-- Project 2 --
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-accent transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
+                        <img src="image2.jpg" alt="Commercial Building Project" class="rounded-lg mb-5 h-48 w-full object-cover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600">[Commercial/Residential] Complex Development</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Managed the [phase, e.g., design phase or construction supervision] of a multi-story complex. Coordinated with architects and contractors to ensure project milestones were met.</p>
+                        <div class="mt-auto pt-4 border-t border-gray-200">
+                            <a href="#" target="_blank" class="text-sm text-blue-600 hover-text-accent-darker font-medium hover:underline">Learn More</a>
+                        </div>
+                    </div>
+                    <!-- Project 3 --
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-accent transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
+                        <img src="https://via.placeholder.com/400x250.png?text=Road+Infrastructure" alt="Road Infrastructure Project" class="rounded-lg mb-5 h-48 w-full object-cover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600">Highway [Number/Name] Upgrade Project</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Contributed to the geometric design and pavement analysis for the upgrade of [X] km of highway, improving safety and traffic flow. Involved [specific task, e.g., stormwater drainage design].</p>
+                        <div class="mt-auto pt-4 border-t border-gray-200">
+                            <a href="#" target="_blank" class="text-sm text-blue-600 hover-text-accent-darker font-medium hover:underline mr-4">Project Overview</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-2xl">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-gray-900 section-title-underline">Get In Touch</h2>
+                <p class="text-gray-700 text-lg leading-relaxed mb-8">
+                    I'm available for new engineering challenges and collaborations. Whether you have a project in mind, a question about my work, or just want to connect, please feel free to reach out.
+                </p>
+                <a href="mailto:your.email@example.com" class="inline-block bg-blue-600 text-white font-semibold px-10 py-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 text-lg transform hover:scale-105">
+                    Email Me <span class="ml-2">📧</span>
+                </a>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <div class="contact-info">
-            <p><strong>Contact</strong></p>
-            <p><a href="mailto:prajwaldhakal84@gmail.com">prajwaldhakal84@gmail.com</a></p>
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-100 border-t border-gray-200">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-500 text-sm">&copy; <span id="currentYear"></span> Prajwal Dhakal. All rights reserved.</p>
         </div>
-        <!-- Add other footer elements if needed, e.g., social links on the right -->
     </footer>
+
+    <script>
+        // Smooth scroll & Mobile menu close on nav item click
+        document.querySelectorAll('header a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
 
 </body>
 </html>
